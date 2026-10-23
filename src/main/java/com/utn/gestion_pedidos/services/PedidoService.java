@@ -7,8 +7,6 @@ import com.utn.gestion_pedidos.repositories.PedidoRepository;
 import com.utn.gestion_pedidos.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 public class PedidoService {
 
@@ -36,7 +34,6 @@ public class PedidoService {
                 .total(0.0)
                 .usuario(usuario)
                 .eliminado(false)
-                .createdAt(LocalDateTime.now())
                 .build();
 
         return pedidoRepository.save(pedido);

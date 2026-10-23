@@ -5,8 +5,6 @@ import com.utn.gestion_pedidos.entities.Categoria;
 import com.utn.gestion_pedidos.repositories.CategoriaRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 public class CategoriaService {
 
@@ -22,7 +20,6 @@ public class CategoriaService {
                 .nombre(dto.nombre())
                 .descripcion(dto.descripcion())
                 .eliminado(false)
-                .createdAt(LocalDateTime.now())
                 .build();
 
         return categoriaRepository.save(categoria);

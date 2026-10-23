@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import jakarta.persistence.PrePersist;
 
 import java.time.LocalDateTime;
 
@@ -35,4 +36,12 @@ public abstract class Base {
 
     @Column(nullable = false)
     protected LocalDateTime createdAt;
+
+    @PrePersist
+    protected void inicializarFechaCreacion() {
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
+    }
+
 }

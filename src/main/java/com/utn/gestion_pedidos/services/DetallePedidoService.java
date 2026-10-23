@@ -10,7 +10,6 @@ import com.utn.gestion_pedidos.repositories.ProductoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 
 @Service
 public class DetallePedidoService {
@@ -45,7 +44,6 @@ public class DetallePedidoService {
                 .producto(producto)
                 .subtotal(0.0)
                 .eliminado(false)
-                .createdAt(LocalDateTime.now())
                 .build();
 
         pedido.addDetallePedido(detalle);

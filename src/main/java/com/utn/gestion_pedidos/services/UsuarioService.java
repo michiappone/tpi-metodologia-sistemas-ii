@@ -5,8 +5,6 @@ import com.utn.gestion_pedidos.entities.Usuario;
 import com.utn.gestion_pedidos.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 public class UsuarioService {
 
@@ -26,7 +24,6 @@ public class UsuarioService {
                 .contraseña(dto.contraseña())
                 .rol(dto.rol())
                 .eliminado(false)
-                .createdAt(LocalDateTime.now())
                 .build();
 
         return usuarioRepository.save(usuario);

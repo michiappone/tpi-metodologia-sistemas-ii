@@ -7,8 +7,6 @@ import com.utn.gestion_pedidos.repositories.CategoriaRepository;
 import com.utn.gestion_pedidos.repositories.ProductoRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 public class ProductoService {
 
@@ -38,7 +36,6 @@ public class ProductoService {
                 .disponible(dto.disponible())
                 .categoria(categoria)
                 .eliminado(false)
-                .createdAt(LocalDateTime.now())
                 .build();
 
         return productoRepository.save(producto);
