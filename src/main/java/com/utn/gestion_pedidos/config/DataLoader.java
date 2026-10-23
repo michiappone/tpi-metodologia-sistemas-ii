@@ -267,40 +267,45 @@ public class DataLoader implements CommandLineRunner {
         // mínimo 2 por pedido
         // =========================
 
-        detallePedidoService.agregarDetalle(
-                pedido1.getId(),
-                new DetallePedidoCreate(1, p1.getId())
-        );
 
-        detallePedidoService.agregarDetalle(
-                pedido1.getId(),
+        agregarDosDetalles(
+                pedido1,
+                new DetallePedidoCreate(1, p1.getId()),
                 new DetallePedidoCreate(2, p2.getId())
         );
 
-
-        detallePedidoService.agregarDetalle(
-                pedido2.getId(),
-                new DetallePedidoCreate(1, p4.getId())
-        );
-
-        detallePedidoService.agregarDetalle(
-                pedido2.getId(),
+        agregarDosDetalles(
+                pedido2,
+                new DetallePedidoCreate(1, p4.getId()),
                 new DetallePedidoCreate(2, p5.getId())
         );
 
-
-        detallePedidoService.agregarDetalle(
-                pedido3.getId(),
-                new DetallePedidoCreate(2, p8.getId())
-        );
-
-        detallePedidoService.agregarDetalle(
-                pedido3.getId(),
+        agregarDosDetalles(
+                pedido3,
+                new DetallePedidoCreate(2, p8.getId()),
                 new DetallePedidoCreate(1, p9.getId())
         );
+
 
         System.out.println("=================================");
         System.out.println("DATOS CARGADOS CORRECTAMENTE");
         System.out.println("=================================");
     }
+
+
+    private void agregarDosDetalles(
+            Pedido pedido,
+            DetallePedidoCreate primerDetalle,
+            DetallePedidoCreate segundoDetalle
+    ) {
+        detallePedidoService.agregarDetalle(
+                pedido.getId(), primerDetalle
+        );
+
+        detallePedidoService.agregarDetalle(
+                pedido.getId(), segundoDetalle
+        );
+    }
+
+
 }
