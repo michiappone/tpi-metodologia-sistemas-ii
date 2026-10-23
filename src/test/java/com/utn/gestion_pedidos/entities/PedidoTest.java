@@ -32,4 +32,49 @@ class PedidoTest {
 
         assertEquals(3000.0, pedido.getTotal(), 0.001);
     }
+
+
+    @Test
+    void calcularTotalConDetallesNulos() {
+        Pedido pedido = Pedido.builder().build();
+
+        pedido.setDetalles(null);
+
+        pedido.calcularTotal();
+
+        assertEquals(0.0, pedido.getTotal(), 0.001);
+    }
+
+
+    @Test
+    void calcularTotalConVariosProductos() {
+        Producto producto1 = Producto.builder()
+                .nombre("Mouse")
+                .precio(2500.0)
+                .build();
+
+        Producto producto2 = Producto.builder()
+                .nombre("Teclado")
+                .precio(4000.0)
+                .build();
+
+        DetallePedido detalle1 = DetallePedido.builder()
+                .producto(producto1)
+                .cantidad(2)
+                .build();
+
+        DetallePedido detalle2 = DetallePedido.builder()
+                .producto(producto2)
+                .cantidad(1)
+                .build();
+
+        Pedido pedido = Pedido.builder().build();
+
+        pedido.addDetallePedido(detalle1);
+        pedido.addDetallePedido(detalle2);
+
+        assertEquals(9000.0, pedido.getTotal(), 0.001);
+    }
+
+
 }

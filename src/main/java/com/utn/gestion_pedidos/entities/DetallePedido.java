@@ -1,7 +1,6 @@
 package com.utn.gestion_pedidos.entities;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)@SuperBuilder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -42,4 +41,24 @@ public class DetallePedido extends Base {
             this.subtotal = 0.0;
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof DetallePedido otro)) {
+            return false;
+        }
+
+        return getId() != null
+                && getId().equals(otro.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return DetallePedido.class.hashCode();
+    }
+
 }
