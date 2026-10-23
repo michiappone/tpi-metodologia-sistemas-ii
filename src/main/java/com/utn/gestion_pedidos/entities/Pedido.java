@@ -110,22 +110,25 @@ public class Pedido extends Base implements Calculable {
         }
     }
 
+
     @Override
     public void calcularTotal() {
+        if (this.detalles == null) {
+            this.total = 0.0;
+            return;
+        }
 
-        this.total = Optional.ofNullable(this.detalles)
-                .map(detalles ->
-                        detalles.stream()
-                                .mapToDouble(detalle ->
-                                        Optional.ofNullable(
-                                                detalle.getSubtotal()
-                                        ).orElse(0.0)
-                                )
-                                .sum()
-                )
-                .orElse(0.0);
+        double suma = 0.0;
+
+        for (DetallePedido detalle : this.detalles) {
+            if (detalle.getSubtotal() != null) {
+                suma += detalle.getSubtotal();
+            }
+        }
+
+        this.total = suma;
     }
-
+    
     public int contarItems() {
 
         return Optional.ofNullable(this.detalles)
