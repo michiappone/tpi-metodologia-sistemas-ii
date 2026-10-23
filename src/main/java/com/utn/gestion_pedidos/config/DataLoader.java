@@ -268,23 +268,25 @@ public class DataLoader implements CommandLineRunner {
         // =========================
 
 
-        agregarDosDetalles(
-                pedido1,
+
+        agregarDosDetalles(new CargaDetallesPedido(
+                pedido1.getId(),
                 new DetallePedidoCreate(1, p1.getId()),
                 new DetallePedidoCreate(2, p2.getId())
-        );
+        ));
 
-        agregarDosDetalles(
-                pedido2,
+        agregarDosDetalles(new CargaDetallesPedido(
+                pedido2.getId(),
                 new DetallePedidoCreate(1, p4.getId()),
                 new DetallePedidoCreate(2, p5.getId())
-        );
+        ));
 
-        agregarDosDetalles(
-                pedido3,
+        agregarDosDetalles(new CargaDetallesPedido(
+                pedido3.getId(),
                 new DetallePedidoCreate(2, p8.getId()),
                 new DetallePedidoCreate(1, p9.getId())
-        );
+        ));
+
 
 
         System.out.println("=================================");
@@ -293,17 +295,17 @@ public class DataLoader implements CommandLineRunner {
     }
 
 
-    private void agregarDosDetalles(
-            Pedido pedido,
-            DetallePedidoCreate primerDetalle,
-            DetallePedidoCreate segundoDetalle
-    ) {
+
+    private void agregarDosDetalles(CargaDetallesPedido carga) {
+
         detallePedidoService.agregarDetalle(
-                pedido.getId(), primerDetalle
+                carga.pedidoId(),
+                carga.primerDetalle()
         );
 
         detallePedidoService.agregarDetalle(
-                pedido.getId(), segundoDetalle
+                carga.pedidoId(),
+                carga.segundoDetalle()
         );
     }
 
